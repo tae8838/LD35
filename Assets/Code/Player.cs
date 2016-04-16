@@ -15,8 +15,6 @@ public class Player : MonoBehaviour{
 	float rotationSpeed = 15f;
 	public float gravity = -9.83f;
 	public float runSpeed = 8f;
-	public float walkSpeed = 3f;
-	public float strafeSpeed = 3f;
 	bool canMove = true;
 	public int health;
 
@@ -50,8 +48,8 @@ public class Player : MonoBehaviour{
 		float velocityXel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).x;
 		float velocityZel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z;
 		//Update animator with movement values
-		animator.SetFloat("Input X", velocityXel / runSpeed);
-		animator.SetFloat("Input Z", velocityZel / runSpeed);
+		//animator.SetFloat("Input X", velocityXel / runSpeed);
+		//animator.SetFloat("Input Z", velocityZel / runSpeed);
 	}
 
 	void Update(){
@@ -71,25 +69,24 @@ public class Player : MonoBehaviour{
 			//Right vector relative to the camera Always orthogonal to the forward vector
 			Vector3 right = new Vector3(forward.z, 0, forward.x);
 			//directional inputs
-			float v = Input.GetAxisRaw("Vertical");
-			float h = Input.GetAxisRaw("Horizontal");
-			float dv = Input.GetAxisRaw("DashVertical");
-			float dh = Input.GetAxisRaw("DashHorizontal");
+			float v = Input.GetAxis("Vertical");
+			float h = Input.GetAxis("Horizontal");
+			//float dv = Input.GetAxisRaw("DashVertical");
+			//float dh = Input.GetAxisRaw("DashHorizontal");
 			// Target direction relative to the camera
 			targetDirection = h * right + v * forward;
 			// Target dash direction relative to the camera
-			targetDashDirection = dh * right + dv * -forward;
+			//targetDashDirection = dh * right + dv * -forward;
 			inputVec = new Vector3(h, 0, v);
 			//if there is some input (account for controller deadzone)
-			if(v > .1 || v < -.1 || h > .1 || h < -.1){
+			animator.SetBool("Moving", true);
+			if(v != 0 && h != 0){
 				//set that character is moving
 				animator.SetBool("Moving", true);
-				animator.SetBool("Running", true);
 			}
 			else{
 				//character is not moving
 				animator.SetBool("Moving", false);
-				animator.SetBool("Running", false);
 			}
 		}
 		//character is dead or blocking, stop character
@@ -98,9 +95,9 @@ public class Player : MonoBehaviour{
 			inputVec = new Vector3(0, 0, 0);
 		}
 		if(!dead){
-			if(Input.GetButtonDown("Death")){
-				Dead();
-			}
+			//if(Input.GetButtonDown("Death")){
+		//		Dead();
+		//	}
 		}
 	}
 
@@ -149,6 +146,7 @@ public class Player : MonoBehaviour{
 		{
 		case "fire":
 			state = Element.Fire;
+
 			break;
 		case "water":
 			state = Element.Water;

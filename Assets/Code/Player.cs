@@ -79,8 +79,8 @@ public class Player : MonoBehaviour{
 			//targetDashDirection = dh * right + dv * -forward;
 			inputVec = new Vector3(h, 0, v);
 			//if there is some input (account for controller deadzone)
-			animator.SetBool("Moving", true);
-			if(v != 0 && h != 0){
+
+			if(v != 0 || h != 0){
 				//set that character is moving
 				animator.SetBool("Moving", true);
 			}
@@ -103,13 +103,12 @@ public class Player : MonoBehaviour{
 
 	float UpdateMovement(){
 		Vector3 motion = inputVec;
-
+		RotateTowardMovementDirection ();
 		if(!dead){
 			//reduce input for diagonal movement
 			motion *= (Mathf.Abs(inputVec.x) == 1 && Mathf.Abs(inputVec.z) == 1)?0.7f:1;
 			//apply velocity based on platform speed to prevent sliding
-			float platformVelocity = platformSpeed.magnitude * .4f;
-			Vector3 platformAdjust = platformSpeed * platformVelocity;
+			newVelocity = motion * runSpeed;
 		}
 		//no input, character not moving
 		else{
@@ -120,18 +119,17 @@ public class Player : MonoBehaviour{
 		// limit velocity to x and z, by maintaining current y velocity:
 		newVelocity.y = GetComponent<Rigidbody>().velocity.y;
 		GetComponent<Rigidbody>().velocity = newVelocity;
+
 		//return a movement value for the animator
 		return inputVec.magnitude;
 	}
 
 	//face character along input direction
 	void RotateTowardMovementDirection(){
-		if(!dead){
-			//if character is moving but not strafing
-			if(inputVec != Vector3.zero){
-				//take the camera orientated input vector and apply it to our characters facing with smoothing
-				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetDirection), Time.deltaTime * rotationSpeed);
-			}
+		
+		Vector3 NextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+		if (NextDir != Vector3.zero) {
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-NextDir), Time.deltaTime * rotationSpeed);
 		}
 	}
 

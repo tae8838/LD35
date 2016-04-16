@@ -88,7 +88,8 @@ ModelImporter:
     400080: PositionLocator
     400082: Shark
     4300000: Shark
-    7400000: Take 001
+    7400000: Run
+    9500000: //RootNode
     11100000: //RootNode
     13700000: Shark
   materials:
@@ -105,13 +106,125 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 2
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: PositionLocator
+        weight: 1
+      - path: PositionLocator/B_Pelvis
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh/B_L_Calf
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh/B_L_Calf/B_L_Foot
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh/B_L_Calf/B_L_Foot/B_L_Toe0
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh/B_R_Calf
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh/B_R_Calf/B_R_Foot
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh/B_R_Calf/B_R_Foot/B_R_Toe0
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger0
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger0/B_L_Finger01
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger0/B_L_Finger01/B_L_Finger02
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger1
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger1/B_L_Finger11
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger1/B_L_Finger11/B_L_Finger12
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger2
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger2/B_L_Finger21
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_Clavicle/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger2/B_L_Finger21/B_L_Finger22
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_Neck
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_Neck/B_Head
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger0
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger0/B_R_Finger01
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger0/B_R_Finger01/B_R_Finger02
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger1
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger1/B_R_Finger11
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger1/B_R_Finger11/B_R_Finger12
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger2
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger2/B_R_Finger21
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger2/B_R_Finger21/B_R_Finger22
+        weight: 1
+      - path: Shark
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -135,7 +248,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 4
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     human: []
     skeleton: []
@@ -148,8 +261,9 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 260b608f9ece271408a7e136976ae736,
+    type: 3}
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

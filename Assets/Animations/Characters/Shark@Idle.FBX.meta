@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 749f89685b876bf4db25abe280c7d9e1
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: B_R_Toe0
+    100004: B_R_Foot
+    100006: B_R_Calf
+    100008: B_R_Thigh
+    100010: B_L_Toe0
+    100012: B_L_Foot
+    100014: B_L_Calf
+    100016: B_L_Thigh
+    100018: B_R_Finger22
+    100020: B_R_Finger21
+    100022: B_R_Finger2
+    100024: B_R_Finger12
+    100026: B_R_Finger11
+    100028: B_R_Finger1
+    100030: B_R_Finger02
+    100032: B_R_Finger01
+    100034: B_R_Finger0
+    100036: B_R_Hand
+    100038: B_R_Forearm
+    100040: B_R_UpperArm
+    100042: B_R_Clavicle
+    100044: B_L_Finger22
+    100046: B_L_Finger21
+    100048: B_L_Finger2
+    100050: B_L_Finger12
+    100052: B_L_Finger11
+    100054: B_L_Finger1
+    100056: B_L_Finger02
+    100058: B_L_Finger01
+    100060: B_L_Finger0
+    100062: B_L_Hand
+    100064: B_L_Forearm
+    100066: B_L_UpperArm
+    100068: B_L_Clavicle
+    100070: B_Head
+    100072: B_Neck
+    100074: B_Spine1
+    100076: B_Spine
+    100078: B_Pelvis
+    100080: PositionLocator
+    100082: Shark
+    400000: //RootNode
+    400002: B_R_Toe0
+    400004: B_R_Foot
+    400006: B_R_Calf
+    400008: B_R_Thigh
+    400010: B_L_Toe0
+    400012: B_L_Foot
+    400014: B_L_Calf
+    400016: B_L_Thigh
+    400018: B_R_Finger22
+    400020: B_R_Finger21
+    400022: B_R_Finger2
+    400024: B_R_Finger12
+    400026: B_R_Finger11
+    400028: B_R_Finger1
+    400030: B_R_Finger02
+    400032: B_R_Finger01
+    400034: B_R_Finger0
+    400036: B_R_Hand
+    400038: B_R_Forearm
+    400040: B_R_UpperArm
+    400042: B_R_Clavicle
+    400044: B_L_Finger22
+    400046: B_L_Finger21
+    400048: B_L_Finger2
+    400050: B_L_Finger12
+    400052: B_L_Finger11
+    400054: B_L_Finger1
+    400056: B_L_Finger02
+    400058: B_L_Finger01
+    400060: B_L_Finger0
+    400062: B_L_Hand
+    400064: B_L_Forearm
+    400066: B_L_UpperArm
+    400068: B_L_Clavicle
+    400070: B_Head
+    400072: B_Neck
+    400074: B_Spine1
+    400076: B_Spine
+    400078: B_Pelvis
+    400080: PositionLocator
+    400082: Shark
+    4300000: Shark
+    7400002: Take 001
+    11100000: //RootNode
+    13700000: Shark
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 3
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

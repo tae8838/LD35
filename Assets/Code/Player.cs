@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Player : MonoBehaviour{
 
-	public enum Element{
+	public enum Color{
 		Default,
-		Fire,
-		Water,
-		Earth
+		Red,
+		Yellow,
+		Green,
+		Blue
 	}
 
 	Animator animator;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour{
 	public float runSpeed = 8f;
 	bool canMove = true;
 	public int health;
+	GameObject currentAvatarGameObject;
 
 	Vector3 newVelocity;
 	Vector3 platformSpeed;
@@ -26,13 +28,14 @@ public class Player : MonoBehaviour{
 	Vector3 targetDirection;
 	Vector3 targetDashDirection;
 	bool dead = false;
-	public Element state = Element.Default;
+	public Color state = Color.Default;
 	public float gauge1;
 	public float gauge2;
 	public float gauge3;
 
 	void Start(){
-		animator = this.GetComponent<Animator>();
+		currentAvatarGameObject = this.transform.Find("Shark").gameObject;
+		animator = currentAvatarGameObject.GetComponent<Animator> ();
 	}
 
 	void FixedUpdate(){
@@ -41,6 +44,7 @@ public class Player : MonoBehaviour{
 		if(canMove){
 			UpdateMovement();
 		}
+		Switch();
 	}
 
 	void LateUpdate(){
@@ -129,7 +133,7 @@ public class Player : MonoBehaviour{
 		
 		Vector3 NextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 		if (NextDir != Vector3.zero) {
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-NextDir), Time.deltaTime * rotationSpeed);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(NextDir), Time.deltaTime * rotationSpeed);
 		}
 	}
 
@@ -139,21 +143,49 @@ public class Player : MonoBehaviour{
 		dead = true;
 	}
 
-	void Switch(string stateChange){
-		switch (stateChange)
+	void Switch(){
+		Color stateToSwitch = MapInputToState ();
+		if (stateToSwitch == state)
+			return;
+		currentAvatarGameObject.SetActive (false);
+		switch (stateToSwitch)
 		{
-		case "fire":
-			state = Element.Fire;
-
+		case Color.Red:
+			state = Color.Red;
+			currentAvatarGameObject = this.transform.Find("Red").gameObject;
 			break;
-		case "water":
-			state = Element.Water;
+		case Color.Yellow:
+			state = Color.Yellow;
+			currentAvatarGameObject = this.transform.Find("Yellow").gameObject;
 			break;
-		case "earth":
-			state = Element.Earth;
+		case Color.Green:
+			state = Color.Green;
+			currentAvatarGameObject = this.transform.Find("Green").gameObject;
+			break;
+		case Color.Blue:
+			state = Color.Blue;
+			currentAvatarGameObject = this.transform.Find("Blue").gameObject;
 			break;
 		default:
+			state = Color.Default;
+			currentAvatarGameObject = this.transform.Find("Shark").gameObject;
 			break;
+		}
+		currentAvatarGameObject.SetActive (true);
+		animator = animator = currentAvatarGameObject.GetComponent<Animator> ();
+	}
+
+	Color MapInputToState(){
+		if (Input.GetKey (KeyCode.Z)) {
+			return Color.Red;
+		} else if (Input.GetKey (KeyCode.X)) {
+			return Color.Yellow;
+		} else if (Input.GetKey (KeyCode.C)) {
+			return Color.Green;
+		} else if (Input.GetKey (KeyCode.V)) {
+			return Color.Blue;
+		} else{
+			return Color.Default;
 		}
 	}
 }

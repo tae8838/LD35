@@ -32,7 +32,7 @@ ModelImporter:
     400024: B_R_UpperArm
     400026: //RootNode
     4300000: EnemyNinja
-    7400000: Take 001
+    7400000: Run_Right
     11100000: //RootNode
     13700000: EnemyNinja
   materials:
@@ -49,13 +49,69 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 2
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run_Right
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: EnemyNinja
+        weight: 1
+      - path: PositionLocator
+        weight: 1
+      - path: PositionLocator/B_Pelvis
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh/B_L_Calf
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh/B_R_Calf
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine1
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine1/B_Head
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine1/B_L_UpperArm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine1/B_L_UpperArm/B_L_Forearm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine1/B_R_UpperArm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine1/B_R_UpperArm/B_R_Forearm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -79,7 +135,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 4
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     human: []
     skeleton: []
@@ -92,8 +148,9 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 47da0750942342047b8be26d98422d0f,
+    type: 3}
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

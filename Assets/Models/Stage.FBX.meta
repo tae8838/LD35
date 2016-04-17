@@ -418,6 +418,7 @@ ModelImporter:
     2300268: Stage-146
     2300270: Stage-147
     2300272: Stage-148
+    2300274: //RootNode
     3300000: Stage-01
     3300002: Stage-02
     3300004: Stage-03
@@ -555,6 +556,7 @@ ModelImporter:
     3300268: Stage-146
     3300270: Stage-147
     3300272: Stage-148
+    3300274: //RootNode
     4300000: Stage-01
     4300002: Stage-02
     4300004: Stage-03
@@ -692,6 +694,7 @@ ModelImporter:
     4300268: Stage-146
     4300270: Stage-147
     4300272: Stage-148
+    4300274: Stage
     9500000: //RootNode
   materials:
     importMaterials: 0

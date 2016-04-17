@@ -21,6 +21,7 @@ public class Player : MonoBehaviour{
 	public GameObject currentAvatarGameObject;
 	public AudioClip runSound;
 	public AudioClip transformSound;
+	public AudioClip scoreSound;
 	public int score = 0;
 
 	Vector3 newVelocity;
@@ -40,6 +41,10 @@ public class Player : MonoBehaviour{
 	ParticleSystem yellowPuff;
 	ParticleSystem greenPuff;
 	ParticleSystem redPuff;
+	ParticleSystem blueAbsorb;
+	ParticleSystem greenAbsorb;
+	ParticleSystem redAbsorb;
+	ParticleSystem yellowAbsorb;
 	ParticleSystem spark;
 	public int health;
 	private AudioSource runningSource;
@@ -55,6 +60,10 @@ public class Player : MonoBehaviour{
 		yellowPuff = this.transform.Find ("Puff-Yellow").GetComponent<ParticleSystem> ();
 		greenPuff = this.transform.Find ("Puff-Green").GetComponent<ParticleSystem> ();
 		redPuff = this.transform.Find ("Puff-Red").GetComponent<ParticleSystem> ();
+		blueAbsorb = this.transform.Find ("Absorb-Blue").GetComponent<ParticleSystem> ();
+		redAbsorb = this.transform.Find ("Absorb-Red").GetComponent<ParticleSystem> ();
+		greenAbsorb = this.transform.Find ("Absorb-Green").GetComponent<ParticleSystem> ();
+		yellowAbsorb = this.transform.Find ("Absorb-Yellow").GetComponent<ParticleSystem> ();
 		spark = this.transform.Find ("Spark").GetComponent<ParticleSystem> ();
 		runningSource = currentAvatarGameObject.GetComponent<AudioSource>();
 		transformingSource = GetComponent<AudioSource>();
@@ -105,7 +114,6 @@ public class Player : MonoBehaviour{
 			//targetDashDirection = dh * right + dv * -forward;
 			inputVec = new Vector3(h, 0, v);
 			//if there is some input (account for controller deadzone)
-
 			if(v != 0 || h != 0){
 				//set that character is moving
 				animator.SetBool("Moving", true);
@@ -145,18 +153,15 @@ public class Player : MonoBehaviour{
 			newVelocity = new Vector3(0,0,0);
 			inputVec = new Vector3(0,0,0);
 		}
-
 		// limit velocity to x and z, by maintaining current y velocity:
 		newVelocity.y = GetComponent<Rigidbody>().velocity.y;
 		GetComponent<Rigidbody>().velocity = newVelocity;
-
 		//return a movement value for the animator
 		return inputVec.magnitude;
 	}
 
 	//face character along input direction
 	void RotateTowardMovementDirection(){
-		
 		Vector3 NextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 		if (NextDir != Vector3.zero) {
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(NextDir), Time.deltaTime * rotationSpeed);
@@ -171,8 +176,9 @@ public class Player : MonoBehaviour{
 
 	void Switch(){
 		Color stateToSwitch = MapInputToState ();
-		if (stateToSwitch == state)
+		if(stateToSwitch == state){
 			return;
+		}
 		currentAvatarGameObject.SetActive (false);
 		transformingSource.PlayOneShot (transformSound);
 		spark.Emit (12);
@@ -227,18 +233,33 @@ public class Player : MonoBehaviour{
 		}
 	}
 	void OnTriggerEnter(Collider other) {
-		if (currentAvatarGameObject.tag == other.tag) {
+		if(currentAvatarGameObject.tag == other.tag) {
+			transformingSource.PlayOneShot (scoreSound);
 			score += 1 * combo;
 			combo += 1;
-			Destroy (other.gameObject);
-		} else {
+			Vector3 effectOffset = new Vector3(0, 1, 0);
+			if (state == Color.Red){
+				redAbsorb.transform.position = other.gameObject.transform.position + effectOffset;
+				redAbsorb.Emit(20);
+			}
+			if (state == Color.Blue){
+				blueAbsorb.transform.position = other.gameObject.transform.position + effectOffset;
+				blueAbsorb.Emit(20);
+			}
+			if (state == Color.Green){
+				greenAbsorb.transform.position = other.gameObject.transform.position + effectOffset;
+				greenAbsorb.Emit(20);
+			}
+			if (state == Color.Yellow){
+				yellowAbsorb.transform.position = other.gameObject.transform.position + effectOffset;
+				yellowAbsorb.Emit(20);
+			}
+			Destroy(other.gameObject);
+		} 
+		else {
 			health -= 1;
-			Destroy (other.gameObject);
+			Destroy(other.gameObject);
 			combo = 1;
 		}
-//		print(health);
-//		print (currentAvatarGameObject.tag);
-//		print (other.tag);
-
 	}
 }

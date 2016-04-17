@@ -11,6 +11,7 @@ public class Player : MonoBehaviour{
 		Blue
 	}
 
+
 	Animator animator;
 	public GameObject target;
 	float rotationSpeed = 15f;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour{
 	GameObject currentAvatarGameObject;
 	public AudioClip runSound;
 	public AudioClip transformSound;
+	public int score = 0;
 
 	Vector3 newVelocity;
 	Vector3 platformSpeed;
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour{
 	private AudioSource transformingSource;
 
 	void Start(){
-		health = 10;
+		health = 3;
 		currentAvatarGameObject = this.transform.Find("Shark").gameObject;
 		animator = currentAvatarGameObject.GetComponent<Animator> ();
 		whitePuff = this.transform.Find ("Puff-White").GetComponent<ParticleSystem> ();
@@ -220,6 +222,7 @@ public class Player : MonoBehaviour{
 	}
 	void OnTriggerEnter(Collider other) {
 		if (currentAvatarGameObject.tag == other.tag) {
+			score += 1;
 			Destroy (other.gameObject);
 		} else {
 			health -= 1;
@@ -228,5 +231,6 @@ public class Player : MonoBehaviour{
 		print(health);
 		print (currentAvatarGameObject.tag);
 		print (other.tag);
+
 	}
 }

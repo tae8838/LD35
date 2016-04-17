@@ -1,13 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor.VersionControl;
+using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
 
 	public Sprite heartSprite;
 	public Sprite heartEmptySprite;
 	public GameObject[] hearts;
+	public Text text;
+	public int score;
+	public Player player;
+	int MAX_HEALTH = 3;
 
+	void Start(){
+		text = transform.Find ("TopRight").Find ("Text-Score").gameObject.GetComponent<Text>();
+	}
+
+	void Update(){
+		score += 1;
+		UpdateScore ();
+		SubtractHealth ();
+	}
 	//find out how many hearts are needed from difficulty level, create that many hearts
 	void SetupNumberOfHearts(){
 	}
@@ -18,7 +32,13 @@ public class HUD : MonoBehaviour {
 
 	//change a heart to an empty heart image
 	void SubtractHealth(){
-
+		if (player.health < MAX_HEALTH) {
+			hearts[player.health].GetComponent<Image> ().sprite = heartEmptySprite;
+		}
+		
 	}
 
+	void UpdateScore(){
+		text.text = "SCORE: " + player.score;
+	}
 }

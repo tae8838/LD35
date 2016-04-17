@@ -71,6 +71,7 @@
      <Compile Include="Assets\Code\Platform.cs" />
      <Compile Include="Assets\Code\Player.cs" />
      <Compile Include="Assets\Code\SmoothFollow.cs" />
+     <Compile Include="Assets\Code\UI\HUD.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>

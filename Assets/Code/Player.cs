@@ -19,6 +19,8 @@ public class Player : MonoBehaviour{
 	bool canMove = true;
 	public int health;
 	GameObject currentAvatarGameObject;
+	public AudioClip runSound;
+	public AudioClip transformSound;
 
 	Vector3 newVelocity;
 	Vector3 platformSpeed;
@@ -38,6 +40,8 @@ public class Player : MonoBehaviour{
 	ParticleSystem greenPuff;
 	ParticleSystem redPuff;
 	ParticleSystem spark;
+	private AudioSource runningSource;
+	private AudioSource transformingSource;
 
 	void Start(){
 		currentAvatarGameObject = this.transform.Find("Shark").gameObject;
@@ -48,6 +52,8 @@ public class Player : MonoBehaviour{
 		greenPuff = this.transform.Find ("Puff-Green").GetComponent<ParticleSystem> ();
 		redPuff = this.transform.Find ("Puff-Red").GetComponent<ParticleSystem> ();
 		spark = this.transform.Find ("Spark").GetComponent<ParticleSystem> ();
+		runningSource = currentAvatarGameObject.GetComponent<AudioSource>();
+		transformingSource = GetComponent<AudioSource>();
 	}
 
 	void FixedUpdate(){
@@ -99,10 +105,14 @@ public class Player : MonoBehaviour{
 			if(v != 0 || h != 0){
 				//set that character is moving
 				animator.SetBool("Moving", true);
+				if (!runningSource.isPlaying) {
+					runningSource.Play ();
+				}
 			}
 			else{
 				//character is not moving
 				animator.SetBool("Moving", false);
+				runningSource.Stop();
 			}
 		}
 		//character is dead or blocking, stop character
@@ -160,6 +170,7 @@ public class Player : MonoBehaviour{
 		if (stateToSwitch == state)
 			return;
 		currentAvatarGameObject.SetActive (false);
+		transformingSource.PlayOneShot (transformSound);
 		spark.Emit (12);
 		switch (stateToSwitch)
 		{

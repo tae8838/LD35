@@ -22,8 +22,6 @@ public class SmoothFollow : MonoBehaviour
 	private Vector3 velocity;
 	#endregion
 
-	bool hudActive = true;
-	
 	private void Awake()
 	{
 		thisTransform = transform;

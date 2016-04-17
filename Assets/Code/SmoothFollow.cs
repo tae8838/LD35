@@ -31,7 +31,7 @@ public class SmoothFollow : MonoBehaviour
 
 	void Update()
 	{
-		transform.position = new Vector3(target.position.x, 13f, target.position.z);
+		transform.position = new Vector3(target.position.x + offSetX, offSetY, target.position.z + offSetZ);
 	}
 
 }

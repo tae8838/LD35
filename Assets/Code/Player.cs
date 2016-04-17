@@ -48,7 +48,7 @@ public class Player : MonoBehaviour{
 
 	void Start(){
 		health = 3;
-		currentAvatarGameObject = this.transform.Find("Shark").gameObject;
+		currentAvatarGameObject = this.transform.Find("Player").gameObject;
 		animator = currentAvatarGameObject.GetComponent<Animator> ();
 		whitePuff = this.transform.Find ("Puff-White").GetComponent<ParticleSystem> ();
 		bluePuff = this.transform.Find ("Puff-Blue").GetComponent<ParticleSystem> ();
@@ -202,7 +202,7 @@ public class Player : MonoBehaviour{
 		default:
 			state = Color.Default;
 			whitePuff.Emit (15);
-			currentAvatarGameObject = this.transform.Find("Shark").gameObject;
+			currentAvatarGameObject = this.transform.Find("Player").gameObject;
 			break;
 		}
 		currentAvatarGameObject.SetActive (true);
@@ -210,15 +210,19 @@ public class Player : MonoBehaviour{
 	}
 
 	Color MapInputToState(){
-		if (Input.GetKey (KeyCode.Z)) {
+		if (Input.GetKey (KeyCode.Z) || Input.GetButton("Fire1")) {
 			return Color.Red;
-		} else if (Input.GetKey (KeyCode.X)) {
+		} 
+		else if (Input.GetKey (KeyCode.X) || Input.GetButton("Fire3")) {
 			return Color.Yellow;
-		} else if (Input.GetKey (KeyCode.C)) {
+		} 
+		else if (Input.GetKey (KeyCode.C) || Input.GetButton("Fire0")) {
 			return Color.Green;
-		} else if (Input.GetKey (KeyCode.V)) {
+		} 
+		else if (Input.GetKey (KeyCode.V) || Input.GetButton("Fire2")) {
 			return Color.Blue;
-		} else{
+		} 
+		else{
 			return Color.Default;
 		}
 	}

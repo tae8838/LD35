@@ -217,4 +217,10 @@ public class Player : MonoBehaviour{
 			return Color.Default;
 		}
 	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "enemy")
+			Destroy(other.gameObject);
+		
+	}
 }

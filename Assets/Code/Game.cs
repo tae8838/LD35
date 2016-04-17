@@ -8,6 +8,7 @@ public class Game : MonoBehaviour {
 	private float enemySpawnInterval;
 	private float timeToNextEnemy;
 	public GameObject[] enemyPrefabs;
+	private int score = 0;
 
 	// Use this for initialization
 	void Start () {

@@ -17,7 +17,6 @@ public class Player : MonoBehaviour{
 	public float gravity = -9.83f;
 	public float runSpeed = 8f;
 	bool canMove = true;
-	public int health;
 	GameObject currentAvatarGameObject;
 	public AudioClip runSound;
 	public AudioClip transformSound;
@@ -40,10 +39,12 @@ public class Player : MonoBehaviour{
 	ParticleSystem greenPuff;
 	ParticleSystem redPuff;
 	ParticleSystem spark;
+	public int health;
 	private AudioSource runningSource;
 	private AudioSource transformingSource;
 
 	void Start(){
+		health = 10;
 		currentAvatarGameObject = this.transform.Find("Shark").gameObject;
 		animator = currentAvatarGameObject.GetComponent<Animator> ();
 		whitePuff = this.transform.Find ("Puff-White").GetComponent<ParticleSystem> ();
@@ -217,10 +218,15 @@ public class Player : MonoBehaviour{
 			return Color.Default;
 		}
 	}
-
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "enemy")
-			Destroy(other.gameObject);
-		
+		if (currentAvatarGameObject.tag == other.tag) {
+			Destroy (other.gameObject);
+		} else {
+			health -= 1;
+			Destroy (other.gameObject);
+		}
+		print(health);
+		print (currentAvatarGameObject.tag);
+		print (other.tag);
 	}
 }

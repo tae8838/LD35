@@ -5,7 +5,7 @@ public class SmoothFollow : MonoBehaviour
 	#region Consts
 	private const float SMOOTH_TIME = 0.3f;
 	#endregion
-	
+
 	#region Public Properties
 	public bool LockX;
 	public float offSetX;
@@ -16,7 +16,7 @@ public class SmoothFollow : MonoBehaviour
 	public bool useSmoothing;
 	public Transform target;
 	#endregion
-	
+
 	#region Private Properties
 	private Transform thisTransform;
 	private Vector3 velocity;
@@ -25,13 +25,13 @@ public class SmoothFollow : MonoBehaviour
 	private void Awake()
 	{
 		thisTransform = transform;
-		
+
 		velocity = new Vector3(0.5f, 0.5f, 0.5f);
 	}
 
 	void Update()
 	{
-		transform.position = new Vector3(target.position.x, offSetY, target.position.z);
+		transform.position = new Vector3(target.position.x, 13f, target.position.z);
 	}
-		
+
 }

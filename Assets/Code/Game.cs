@@ -21,7 +21,7 @@ public class Game : MonoBehaviour {
 		{
 			SpawnEnemy();
 			timeToNextEnemy = enemySpawnInterval;
-			enemySpawnInterval /= 1.2f;
+			enemySpawnInterval /= 1.01f;
 		}
 		else
 		{

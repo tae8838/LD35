@@ -13,7 +13,6 @@ public class HUD : MonoBehaviour {
 	int MAX_HEALTH = 3;
 
 	void Start(){
-		text = transform.Find ("TopRight").Find ("Text-Score").gameObject.GetComponent<Text>();
 	}
 
 	void Update(){

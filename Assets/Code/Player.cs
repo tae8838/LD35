@@ -18,7 +18,7 @@ public class Player : MonoBehaviour{
 	public float gravity = -9.83f;
 	public float runSpeed = 8f;
 	bool canMove = true;
-	GameObject currentAvatarGameObject;
+	public GameObject currentAvatarGameObject;
 	public AudioClip runSound;
 	public AudioClip transformSound;
 	public int score = 0;
@@ -44,6 +44,7 @@ public class Player : MonoBehaviour{
 	public int health;
 	private AudioSource runningSource;
 	private AudioSource transformingSource;
+	private int combo = 1;
 
 	void Start(){
 		health = 3;
@@ -175,6 +176,7 @@ public class Player : MonoBehaviour{
 		currentAvatarGameObject.SetActive (false);
 		transformingSource.PlayOneShot (transformSound);
 		spark.Emit (12);
+		combo = 1;
 		switch (stateToSwitch)
 		{
 		case Color.Red:
@@ -204,7 +206,7 @@ public class Player : MonoBehaviour{
 			break;
 		}
 		currentAvatarGameObject.SetActive (true);
-		animator = animator = currentAvatarGameObject.GetComponent<Animator> ();
+		animator = currentAvatarGameObject.GetComponent<Animator> ();
 	}
 
 	Color MapInputToState(){
@@ -222,11 +224,13 @@ public class Player : MonoBehaviour{
 	}
 	void OnTriggerEnter(Collider other) {
 		if (currentAvatarGameObject.tag == other.tag) {
-			score += 1;
+			score += 1 * combo;
+			combo += 1;
 			Destroy (other.gameObject);
 		} else {
 			health -= 1;
 			Destroy (other.gameObject);
+			combo = 1;
 		}
 		print(health);
 		print (currentAvatarGameObject.tag);

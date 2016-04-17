@@ -14,7 +14,6 @@ public class Enemy : Destroyable
 	public bool hasStopped = false;
 
 	private GameObject player;
-	public EnemyController enemy;
 	public CollisionControl collisionControl;
 	public NavMeshAgent nav;
 
@@ -52,6 +51,8 @@ public class Enemy : Destroyable
 	public ParticleSystem bloodfx;
 	private float runSpeed;
 	private float rotationSpeed = 3f;
+	private float changeDirectionIn = 1f;
+	Vector3 motion;
 	
 	public enum EnemyState 
 	{
@@ -79,8 +80,8 @@ public class Enemy : Destroyable
 		player = GameObject.FindWithTag("player");
 		enemyTransform = this.transform;
 		playerTransform = player.transform;
-
 		target = playerTransform;
+		motion = new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
 		runSpeed = Random.Range (2f, 7f);
 		//Set a random knock resist
 	}
@@ -89,6 +90,7 @@ public class Enemy : Destroyable
 	{
 		base.Update ();
 		UpdateMovement();
+		changeDirectionIn -= Time.deltaTime;
 	}
 
 	//move toward destination
@@ -103,7 +105,7 @@ public class Enemy : Destroyable
 //
 	public virtual void FixedUpdate()
 	{
-		UpdateMovement();
+		
 
 		//Update animator with movement values
 		enemyPos = this.transform.position;
@@ -194,8 +196,8 @@ public class Enemy : Destroyable
 
 //
 	void UpdateMovement() {
-		Vector3 motion = target.position - transform.position;
-		RotateTowardMovementDirection ();
+		motion = GetMotion ();
+		RotateTowardMovementDirection (motion);
 		//reduce input for diagonal movement
 
 		motion *= (Mathf.Abs(motion.x) == 1 && Mathf.Abs(motion.z) == 1)?0.7f:1;
@@ -207,10 +209,37 @@ public class Enemy : Destroyable
 		float velocityZel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z;
 	}
 
-	void RotateTowardMovementDirection(){
-		Vector3 NextDir = target.position - transform.position;
+	void RotateTowardMovementDirection(Vector3 NextDir){
 		if (NextDir != Vector3.zero) {
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(NextDir), Time.deltaTime * rotationSpeed);
 		}
+	}
+	Vector3 GetMotion(){
+		
+		if((target.position - transform.position).magnitude < 3){
+			runSpeed = 2;
+			if (player.transform.GetChild (0).tag == tag) {
+				print ("Running!!!!");
+				return (transform.position - target.position);
+			} else {
+				print (player.transform.GetChild (0).tag);
+				return (target.position - transform.position);
+			}
+		}
+		if (changeDirectionIn < 0) {
+			runSpeed = Random.Range (3, 10) / 2.0f;
+			changeDirectionIn = Random.Range (1, 4);
+			if (tag == "blue") {
+				return new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
+			} else if (tag == "green") {
+				return new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
+			} else if (tag == "yellow") {
+				return new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
+			} else if (tag == "red") {
+				return new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
+			}
+
+		}
+		return motion;
 	}
 }

@@ -32,10 +32,22 @@ public class Player : MonoBehaviour{
 	public float gauge1;
 	public float gauge2;
 	public float gauge3;
+	ParticleSystem whitePuff;
+	ParticleSystem bluePuff;
+	ParticleSystem yellowPuff;
+	ParticleSystem greenPuff;
+	ParticleSystem redPuff;
+	ParticleSystem spark;
 
 	void Start(){
 		currentAvatarGameObject = this.transform.Find("Shark").gameObject;
 		animator = currentAvatarGameObject.GetComponent<Animator> ();
+		whitePuff = this.transform.Find ("Puff-White").GetComponent<ParticleSystem> ();
+		bluePuff = this.transform.Find ("Puff-Blue").GetComponent<ParticleSystem> ();
+		yellowPuff = this.transform.Find ("Puff-Yellow").GetComponent<ParticleSystem> ();
+		greenPuff = this.transform.Find ("Puff-Green").GetComponent<ParticleSystem> ();
+		redPuff = this.transform.Find ("Puff-Red").GetComponent<ParticleSystem> ();
+		spark = this.transform.Find ("Spark").GetComponent<ParticleSystem> ();
 	}
 
 	void FixedUpdate(){
@@ -148,26 +160,32 @@ public class Player : MonoBehaviour{
 		if (stateToSwitch == state)
 			return;
 		currentAvatarGameObject.SetActive (false);
+		spark.Emit (12);
 		switch (stateToSwitch)
 		{
 		case Color.Red:
 			state = Color.Red;
+			redPuff.Emit (15);
 			currentAvatarGameObject = this.transform.Find("Red").gameObject;
 			break;
 		case Color.Yellow:
 			state = Color.Yellow;
+			yellowPuff.Emit (15);
 			currentAvatarGameObject = this.transform.Find("Yellow").gameObject;
 			break;
 		case Color.Green:
 			state = Color.Green;
+			greenPuff.Emit (15);
 			currentAvatarGameObject = this.transform.Find("Green").gameObject;
 			break;
 		case Color.Blue:
 			state = Color.Blue;
+			bluePuff.Emit (15);
 			currentAvatarGameObject = this.transform.Find("Blue").gameObject;
 			break;
 		default:
 			state = Color.Default;
+			whitePuff.Emit (15);
 			currentAvatarGameObject = this.transform.Find("Shark").gameObject;
 			break;
 		}

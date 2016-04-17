@@ -9,7 +9,6 @@ public class HUD : MonoBehaviour {
 	public Sprite heartEmptySprite;
 	public GameObject[] hearts;
 	public Text text;
-	public int score;
 	public Player player;
 	int MAX_HEALTH = 3;
 
@@ -18,7 +17,6 @@ public class HUD : MonoBehaviour {
 	}
 
 	void Update(){
-		score += 1;
 		UpdateScore ();
 		SubtractHealth ();
 	}

@@ -219,10 +219,10 @@ public class Enemy : Destroyable
 		if((target.position - transform.position).magnitude < 3){
 			runSpeed = 2;
 			if (player.transform.GetChild (0).tag == tag) {
-				print ("Running!!!!");
+//				print ("Running!!!!");
 				return (transform.position - target.position);
 			} else {
-				print (player.transform.GetChild (0).tag);
+//				print (player.transform.GetChild (0).tag);
 				return (target.position - transform.position);
 			}
 		}

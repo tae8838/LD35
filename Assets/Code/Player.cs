@@ -232,9 +232,9 @@ public class Player : MonoBehaviour{
 			Destroy (other.gameObject);
 			combo = 1;
 		}
-		print(health);
-		print (currentAvatarGameObject.tag);
-		print (other.tag);
+//		print(health);
+//		print (currentAvatarGameObject.tag);
+//		print (other.tag);
 
 	}
 }

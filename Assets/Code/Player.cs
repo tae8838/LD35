@@ -242,6 +242,7 @@ public class Player : MonoBehaviour{
 		}
 	}
 	void OnTriggerEnter(Collider other) {
+		print (other);
 		if(state.ToString() == other.tag) {
 			transformingSource.PlayOneShot (scoreSound);
 			score += 1 * combo;

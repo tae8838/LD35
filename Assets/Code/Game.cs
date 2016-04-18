@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Game : MonoBehaviour {
 	public Enemy[] enemySpawn;
@@ -10,6 +11,10 @@ public class Game : MonoBehaviour {
 	public GameObject stage;
 	public GameObject[] spawningAreas;
 
+
+	public void Restart(){
+		Application.LoadLevel (0);
+	}
 	// Use this for initialization
 	void Start () {
 		//calculate enemy spawn interval

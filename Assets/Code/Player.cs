@@ -48,6 +48,8 @@ public class Player : MonoBehaviour{
 	public int health;
 	private AudioSource runningSource;
 	private AudioSource transformingSource;
+	public AudioSource gameOver;
+	public AudioSource hitSound;
 	public int combo = 1;
 	public GameObject gameOverScreen;
 	Vector3 stageSize;
@@ -163,6 +165,7 @@ public class Player : MonoBehaviour{
 	}
 
 	void Dead(){
+		
 		animator.applyRootMotion = true;
 		animator.SetTrigger("DeathTrigger");
 		dead = true;
@@ -176,7 +179,6 @@ public class Player : MonoBehaviour{
 		currentAvatarGameObject.SetActive (false);
 		transformingSource.PlayOneShot (transformSound);
 		spark.Emit (12);
-		combo = 1;
 		switch (stateToSwitch)
 		{
 		case Color.Red:
@@ -260,6 +262,7 @@ public class Player : MonoBehaviour{
 			if (other.tag == "Collide"){
 			} else{
 				health -= 1;
+				hitSound.Play ();
 				decreaseHealth = true;
 				Destroy(other.gameObject);
 				combo = 1;
@@ -271,6 +274,7 @@ public class Player : MonoBehaviour{
 	}
 
 	void GameOver(){
+		gameOver.Play ();
 		dead = true;
 		gameOverScreen.SetActive (true);
 		newVelocity = new Vector3(0,0,0);

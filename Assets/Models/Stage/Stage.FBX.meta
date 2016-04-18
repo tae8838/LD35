@@ -143,6 +143,8 @@ ModelImporter:
     100270: Stage-146
     100272: Stage-147
     100274: Stage-148
+    100276: Stage
+    100278: Collision
     400000: //RootNode
     400002: Stage-01
     400004: Stage-02
@@ -281,6 +283,8 @@ ModelImporter:
     400270: Stage-146
     400272: Stage-147
     400274: Stage-148
+    400276: Stage
+    400278: Collision
     2300000: Stage-01
     2300002: Stage-02
     2300004: Stage-03
@@ -419,6 +423,8 @@ ModelImporter:
     2300270: Stage-147
     2300272: Stage-148
     2300274: //RootNode
+    2300276: Stage
+    2300278: Collision
     3300000: Stage-01
     3300002: Stage-02
     3300004: Stage-03
@@ -557,6 +563,8 @@ ModelImporter:
     3300270: Stage-147
     3300272: Stage-148
     3300274: //RootNode
+    3300276: Stage
+    3300278: Collision
     4300000: Stage-01
     4300002: Stage-02
     4300004: Stage-03
@@ -695,6 +703,7 @@ ModelImporter:
     4300270: Stage-147
     4300272: Stage-148
     4300274: Stage
+    4300276: Collision
     9500000: //RootNode
   materials:
     importMaterials: 0

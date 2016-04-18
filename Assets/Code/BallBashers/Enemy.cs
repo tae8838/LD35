@@ -33,8 +33,6 @@ public class Enemy : Destroyable
 	public bool isAlive = true;
 	public bool damaged;
 	public bool moving = false;
-	private int xBoundary = 0;
-	private int zBoundary = 0;
 
 	[HideInInspector]
 	public float knockback = 0f;
@@ -100,7 +98,6 @@ public class Enemy : Destroyable
 	}
 
 	void UpdateMovement() {
-		UpdateBoundaries ();
 		motion = GetMotion ();
 		RotateTowardMovementDirection ();
 		//reduce input for diagonal movement
@@ -140,37 +137,6 @@ public class Enemy : Destroyable
 			output = motion;
 		}
 
-		if (zBoundary == 1 && output.z > 0) {
-			output.z = 0;
-		}
-		if (zBoundary == -1 && output.z < 0) {
-			output.z = 0;
-		}
-		if (xBoundary == 1 && output.x > 0) {
-			output.x = 0;
-		}
-		if (xBoundary == -1 && output.x < 0) {
-			output.x = 0;
-		}
-
 		return output;
-	}
-
-	void UpdateBoundaries(){
-		zBoundary = 0;
-		xBoundary = 0;
-
-		if (stageSize.z / 2.2 < transform.position.z) {
-			zBoundary = 1;
-		}
-		if (stageSize.z / -2.2 > transform.position.z) {
-			zBoundary = -1;
-		}
-		if (stageSize.x / 2.2 < transform.position.x) {
-			xBoundary = 1;
-		}
-		if (stageSize.x / -2.2 > transform.position.x) {
-			xBoundary = -1;
-		}
 	}
 }

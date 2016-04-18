@@ -47,10 +47,8 @@ public class Player : MonoBehaviour{
 	public int health;
 	private AudioSource runningSource;
 	private AudioSource transformingSource;
-	private int combo = 1;
+	public int combo = 1;
 	public GameObject gameOverScreen;
-	private int xBoundary = 0;
-	private int zBoundary = 0;
 	Vector3 stageSize;
 
 	void Start(){
@@ -88,7 +86,6 @@ public class Player : MonoBehaviour{
 		}
 		//if character isn't dead, blocking, or stunned (or in a move)
 		if(!dead){
-			UpdateBoundaries ();
 			UpdateMovement();
 			Switch();
 			//Get input from controls relative to camera
@@ -139,23 +136,7 @@ public class Player : MonoBehaviour{
 		Vector3 motion = inputVec;
 		RotateTowardMovementDirection ();
 		if(!dead){
-
-			//reduce input for diagonal movement
-
-			//apply velocity based on platform speed to prevent sliding
 			newVelocity = motion * runSpeed;
-			if (zBoundary == 1 && newVelocity.z > 0) {
-				newVelocity.z = 0;
-			}
-			if (zBoundary == -1 && newVelocity.z < 0) {
-				newVelocity.z = 0;
-			}
-			if (xBoundary == 1 && newVelocity.x > 0) {
-				newVelocity.x = 0;
-			}
-			if (xBoundary == -1 && newVelocity.x < 0) {
-				newVelocity.x = 0;
-			}
 		}
 		//no input, character not moving
 		else{
@@ -276,24 +257,6 @@ public class Player : MonoBehaviour{
 					GameOver();
 				}
 			}
-		}
-	}
-
-	void UpdateBoundaries(){
-		zBoundary = 0;
-		xBoundary = 0;
-
-		if (stageSize.z / 2.0 < transform.position.z) {
-			zBoundary = 1;
-		}
-		if (stageSize.z / -2.0 > transform.position.z) {
-			zBoundary = -1;
-		}
-		if (stageSize.x / 2.0 < transform.position.x) {
-			xBoundary = 1;
-		}
-		if (stageSize.x / -2.0 > transform.position.x) {
-			xBoundary = -1;
 		}
 	}
 

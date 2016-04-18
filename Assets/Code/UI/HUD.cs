@@ -8,7 +8,8 @@ public class HUD : MonoBehaviour {
 	public Sprite heartSprite;
 	public Sprite heartEmptySprite;
 	public GameObject[] hearts;
-	public Text text;
+	public Text score;
+	public Text combo;
 	public Player player;
 	int MAX_HEALTH = 3;
 
@@ -36,6 +37,7 @@ public class HUD : MonoBehaviour {
 	}
 
 	void UpdateScore(){
-		text.text = "SCORE: " + player.score;
+		score.text = "SCORE: " + player.score;
+		combo.text = "COMBO: " + player.combo;
 	}
 }

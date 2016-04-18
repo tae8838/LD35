@@ -146,7 +146,9 @@ public class Player : MonoBehaviour{
 			newVelocity = new Vector3(0,0,0);
 			inputVec = new Vector3(0,0,0);
 		}
-		RotateTowardMovementDirection ();
+		if (motion.magnitude != 0) {
+			RotateTowardMovementDirection ();
+		}
 		// limit velocity to x and z, by maintaining current y velocity:
 		GetComponent<Rigidbody>().velocity = inputVec * 1.5f;
 		//return a movement value for the animator

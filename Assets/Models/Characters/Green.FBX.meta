@@ -45,9 +45,12 @@ ModelImporter:
     400036: B_L_UpperArm
     400038: B_Head
     400040: B_Spine1
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Dragon
     4300002: Dragon001
     4300004: DragonOwl
+    4300006: Turtle
     9500000: //RootNode
     11100000: //RootNode
     13700000: DragonOwl

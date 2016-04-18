@@ -11,7 +11,6 @@ public class Game : MonoBehaviour {
 	public GameObject stage;
 	public GameObject[] spawningAreas;
 
-
 	public void Restart(){
 		Application.LoadLevel (0);
 	}

@@ -10,10 +10,6 @@ public class HUD : MonoBehaviour {
 	public Text score;
 	public Text combo;
 	public Player player;
-	int MAX_HEALTH = 3;
-
-	void Start(){
-	}
 
 	void Update(){
 		UpdateScore ();
@@ -26,9 +22,6 @@ public class HUD : MonoBehaviour {
 		if (player.dead) {
 			gameObject.SetActive (false);
 		}
-	}
-	//find out how many hearts are needed from difficulty level, create that many hearts
-	void SetupNumberOfHearts(){
 	}
 
 	//change one of the hearts to a full heart
@@ -48,5 +41,16 @@ public class HUD : MonoBehaviour {
 	void UpdateScore(){
 		score.text = "SCORE: " + player.score;
 		combo.text = "COMBO: " + player.combo;
+	}
+
+	public void PulseScore(){
+		StartCoroutine(_PulseScore());
+	}
+
+	IEnumerator _PulseScore(){
+		score.rectTransform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+		yield return new WaitForEndOfFrame();
+		yield return new WaitForEndOfFrame();
+		score.rectTransform.localScale = new Vector3(1f, 1f, 1f);
 	}
 }

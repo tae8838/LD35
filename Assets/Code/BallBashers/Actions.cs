@@ -22,24 +22,10 @@ public class Actions : MonoBehaviour
 	public float gravity = -9;
 	bool canJump;
 	public bool isJumping;
-	bool jumped = false;
 
 
 	//rolling variables
 	public float rollSpeed = 20;
 	public bool rolling = true;
-	bool canRoll = true;
-	bool isRolling = false;
-	bool rolled = false;
 
-	//aiming/shooting variables
-	bool canAim;
-	bool canFire;
-	int firing = 0;
-	public bool aiming = false;
-	bool aimed = false;
-	bool isAiming = false;
-	public bool grenading = true;
-	
-	bool canGrenade = true;
 }

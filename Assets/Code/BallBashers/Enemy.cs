@@ -104,7 +104,6 @@ public class Enemy : Destroyable
 		// limit velocity to x and z, by maintaining current y velocity:
 		motion.Normalize();
 		GetComponent<Rigidbody>().velocity = motion * runSpeed;
-		float velocityXel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).x;
 		float velocityZel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z;
 
 	}

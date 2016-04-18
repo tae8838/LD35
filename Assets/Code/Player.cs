@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour{
 
@@ -11,13 +12,11 @@ public class Player : MonoBehaviour{
 		Blue
 	}
 
-
 	Animator animator;
 	public GameObject target;
 	float rotationSpeed = 15f;
 	public float gravity = -9.83f;
 	public float runSpeed = 0f;
-	bool canMove = true;
 	public GameObject currentAvatarGameObject;
 	public AudioClip runSound;
 	public AudioClip transformSound;
@@ -45,6 +44,8 @@ public class Player : MonoBehaviour{
 	ParticleSystem yellowAbsorb;
 	ParticleSystem spark;
 	ParticleSystem stars;
+	ParticleSystem impact;
+	ParticleSystem hit;
 	public int health;
 	private AudioSource runningSource;
 	private AudioSource transformingSource;
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour{
 	public AudioSource hitSound;
 	public int combo = 1;
 	public GameObject gameOverScreen;
-	Vector3 stageSize;
+	public GameObject hudScreen;
 	public bool addHealth = true;
 	public bool decreaseHealth = false;
 
@@ -73,15 +74,8 @@ public class Player : MonoBehaviour{
 		stars = this.transform.Find ("Stars").GetComponent<ParticleSystem> ();
 		runningSource = currentAvatarGameObject.GetComponent<AudioSource>();
 		transformingSource = GetComponent<AudioSource>();
-		stageSize = stage.GetComponent<BoxCollider> ().bounds.size;
-	}
-
-	void FixedUpdate(){
-	}
-
-	void LateUpdate(){
-		float velocityXel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).x * runSpeed;
-		float velocityZel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z * runSpeed;
+		impact = this.transform.Find ("Impact").GetComponent<ParticleSystem> ();
+		hit = this.transform.Find ("Hit").GetComponent<ParticleSystem> ();
 	}
 
 	void Update(){
@@ -165,7 +159,6 @@ public class Player : MonoBehaviour{
 	}
 
 	void Dead(){
-		
 		animator.applyRootMotion = true;
 		animator.SetTrigger("DeathTrigger");
 		dead = true;
@@ -239,6 +232,7 @@ public class Player : MonoBehaviour{
 			score += 1 * combo;
 			combo += 1;
 			stars.Emit (20);
+			hudScreen.GetComponent<HUD>().PulseScore();
 			Vector3 effectOffset = new Vector3(0, 1, 0);
 			if (state == Color.Red){
 				redAbsorb.transform.position = other.gameObject.transform.position + effectOffset;
@@ -260,9 +254,13 @@ public class Player : MonoBehaviour{
 		}
 		else {
 			if (other.tag == "Collide"){
-			} else{
+			} 
+			else{
 				health -= 1;
-				hitSound.Play ();
+				hitSound.Play();
+				impact.Emit(2);
+				impact.startLifetime = impact.startLifetime;
+				hit.Emit(16);
 				decreaseHealth = true;
 				Destroy(other.gameObject);
 				combo = 1;

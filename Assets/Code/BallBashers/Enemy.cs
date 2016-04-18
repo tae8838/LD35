@@ -13,7 +13,7 @@ public class Enemy : Destroyable
 	
 	public bool hasStopped = false;
 
-	private GameObject player;
+	public Player player;
 	public CollisionControl collisionControl;
 	public NavMeshAgent nav;
 
@@ -33,6 +33,8 @@ public class Enemy : Destroyable
 	public bool isAlive = true;
 	public bool damaged;
 	public bool moving = false;
+	private int xBoundary = 0;
+	private int zBoundary = 0;
 
 	[HideInInspector]
 	public float knockback = 0f;
@@ -53,6 +55,7 @@ public class Enemy : Destroyable
 	private float rotationSpeed = 3f;
 	private float changeDirectionIn = 1f;
 	Vector3 motion;
+	public Vector3 stageSize;
 	
 	public enum EnemyState 
 	{
@@ -66,8 +69,9 @@ public class Enemy : Destroyable
 	
 	public EnemyState enemyState = EnemyState.Normal;
 
-	public Enemy()
+	public Enemy(Player player)
 	{      
+		player = player;
 	}
 	
 	void Awake()
@@ -77,10 +81,7 @@ public class Enemy : Destroyable
 
 	public override void Start ()
 	{
-		player = GameObject.FindWithTag("player");
 		enemyTransform = this.transform;
-		playerTransform = player.transform;
-		target = playerTransform;
 		motion = new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
 		runSpeed = Random.Range (2f, 7f);
 		//Set a random knock resist
@@ -196,6 +197,7 @@ public class Enemy : Destroyable
 
 //
 	void UpdateMovement() {
+		UpdateBoundaries ();
 		motion = GetMotion ();
 		RotateTowardMovementDirection (motion);
 		//reduce input for diagonal movement
@@ -215,31 +217,55 @@ public class Enemy : Destroyable
 		}
 	}
 	Vector3 GetMotion(){
-		
-		if((target.position - transform.position).magnitude < 3){
-			runSpeed = 2;
-			if (player.transform.GetChild (0).tag == tag) {
-//				print ("Running!!!!");
-				return (transform.position - target.position);
+		Vector3 output;
+		if ((target.position - transform.position).magnitude < 3) {
+			
+			if (player.state.ToString () == tag) {
+				runSpeed = 2;
+				output = (transform.position - target.position);
 			} else {
-//				print (player.transform.GetChild (0).tag);
-				return (target.position - transform.position);
+				runSpeed = 4;
+				output = (target.position - transform.position);
 			}
-		}
-		if (changeDirectionIn < 0) {
+		} else if (changeDirectionIn < 0) {
 			runSpeed = Random.Range (3, 10) / 2.0f;
 			changeDirectionIn = Random.Range (1, 4);
-			if (tag == "blue") {
-				return new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
-			} else if (tag == "green") {
-				return new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
-			} else if (tag == "yellow") {
-				return new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
-			} else if (tag == "red") {
-				return new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
-			}
-
+			output = new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
+		} else {
+			output = motion;
 		}
-		return motion;
+
+		if (zBoundary == 1 && output.z > 0) {
+			output.z = 0;
+		}
+		if (zBoundary == -1 && output.z < 0) {
+			output.z = 0;
+		}
+		if (xBoundary == 1 && output.x > 0) {
+			output.x = 0;
+		}
+		if (xBoundary == -1 && output.x < 0) {
+			output.x = 0;
+		}
+
+		return output;
+	}
+
+	void UpdateBoundaries(){
+		zBoundary = 0;
+		xBoundary = 0;
+
+		if (stageSize.z / 2.2 < transform.position.z) {
+			zBoundary = 1;
+		}
+		if (stageSize.z / -2.2 > transform.position.z) {
+			zBoundary = -1;
+		}
+		if (stageSize.x / 2.2 < transform.position.x) {
+			xBoundary = 1;
+		}
+		if (stageSize.x / -2.2 > transform.position.x) {
+			xBoundary = -1;
+		}
 	}
 }

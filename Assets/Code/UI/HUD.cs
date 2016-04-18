@@ -29,7 +29,7 @@ public class HUD : MonoBehaviour {
 
 	//change a heart to an empty heart image
 	void SubtractHealth(){
-		if (player.health < MAX_HEALTH) {
+		if (player.health < MAX_HEALTH && player.health > -1) {
 			hearts[player.health].GetComponent<Image> ().sprite = heartEmptySprite;
 		}
 		

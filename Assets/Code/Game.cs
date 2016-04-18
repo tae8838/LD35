@@ -3,10 +3,11 @@ using System.Collections;
 
 public class Game : MonoBehaviour {
 	public Enemy[] enemySpawn;
-	public float enemySpawnPeriod = 20f;
+	private float enemySpawnPeriod = 20f;
 	private float enemySpawnInterval;
 	private float timeToNextEnemy;
-	public GameObject[] enemyPrefabs;
+	public Player player;
+	public GameObject stage;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,9 @@ public class Game : MonoBehaviour {
 	void SpawnEnemy()
 	{
 		int index = Random.Range (0, enemySpawn.Length);
-		Instantiate(enemySpawn[index], new Vector3(0,0,0), new Quaternion(0,0,0,0));
+		Enemy e = (Enemy)Instantiate(enemySpawn[index], new Vector3(0,0,0), new Quaternion(0,0,0,0));
+		e.target = player.transform;
+		e.player = player;
+		e.stageSize = stage.GetComponent<BoxCollider> ().bounds.size;
 	}
 }

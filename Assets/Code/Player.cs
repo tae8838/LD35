@@ -23,6 +23,7 @@ public class Player : MonoBehaviour{
 	public AudioClip transformSound;
 	public AudioClip scoreSound;
 	public int score = 0;
+	public GameObject stage;
 
 	Vector3 newVelocity;
 	Vector3 platformSpeed;
@@ -33,9 +34,6 @@ public class Player : MonoBehaviour{
 	Vector3 targetDashDirection;
 	bool dead = false;
 	public Color state = Color.Default;
-	public float gauge1;
-	public float gauge2;
-	public float gauge3;
 	ParticleSystem whitePuff;
 	ParticleSystem bluePuff;
 	ParticleSystem yellowPuff;
@@ -50,6 +48,10 @@ public class Player : MonoBehaviour{
 	private AudioSource runningSource;
 	private AudioSource transformingSource;
 	private int combo = 1;
+	public GameObject gameOverScreen;
+	private int xBoundary = 0;
+	private int zBoundary = 0;
+	Vector3 stageSize;
 
 	void Start(){
 		health = 3;
@@ -67,34 +69,28 @@ public class Player : MonoBehaviour{
 		spark = this.transform.Find ("Spark").GetComponent<ParticleSystem> ();
 		runningSource = currentAvatarGameObject.GetComponent<AudioSource>();
 		transformingSource = GetComponent<AudioSource>();
+		stageSize = stage.GetComponent<BoxCollider> ().bounds.size;
 	}
 
 	void FixedUpdate(){
-		GetComponent<Rigidbody>().AddForce(0, gravity, 0, ForceMode.Acceleration);
-		//check if character can move
-		if(canMove){
-			UpdateMovement();
-		}
-		Switch();
 	}
 
 	void LateUpdate(){
-		//Get local velocity of charcter
 		float velocityXel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).x;
 		float velocityZel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z;
-		//Update animator with movement values
-		//animator.SetFloat("Input X", velocityXel / runSpeed);
-		//animator.SetFloat("Input Z", velocityZel / runSpeed);
 	}
 
 	void Update(){
 		//update character position and facing
-		UpdateMovement();
+
 		if(Input.GetKeyDown(KeyCode.P)){
 			Debug.Break();
 		}
 		//if character isn't dead, blocking, or stunned (or in a move)
 		if(!dead){
+			UpdateBoundaries ();
+			UpdateMovement();
+			Switch();
 			//Get input from controls relative to camera
 			Transform cameraTransform = Camera.main.transform;
 			//Forward vector relative to the camera along the x-z plane
@@ -143,10 +139,24 @@ public class Player : MonoBehaviour{
 		Vector3 motion = inputVec;
 		RotateTowardMovementDirection ();
 		if(!dead){
+
 			//reduce input for diagonal movement
-			motion *= (Mathf.Abs(inputVec.x) == 1 && Mathf.Abs(inputVec.z) == 1)?0.7f:1;
+
 			//apply velocity based on platform speed to prevent sliding
 			newVelocity = motion * runSpeed;
+			if (zBoundary == 1 && newVelocity.z > 0) {
+				newVelocity.z = 0;
+			}
+			if (zBoundary == -1 && newVelocity.z < 0) {
+				newVelocity.z = 0;
+			}
+			if (xBoundary == 1 && newVelocity.x > 0) {
+				newVelocity.x = 0;
+			}
+			if (xBoundary == -1 && newVelocity.x < 0) {
+				newVelocity.x = 0;
+			}
+
 		}
 		//no input, character not moving
 		else{
@@ -218,22 +228,22 @@ public class Player : MonoBehaviour{
 	Color MapInputToState(){
 		if (Input.GetKey (KeyCode.Z) || Input.GetButton("Fire1")) {
 			return Color.Red;
-		} 
+		}
 		else if (Input.GetKey (KeyCode.X) || Input.GetButton("Fire3")) {
 			return Color.Yellow;
-		} 
+		}
 		else if (Input.GetKey (KeyCode.C) || Input.GetButton("Fire0")) {
 			return Color.Green;
-		} 
+		}
 		else if (Input.GetKey (KeyCode.V) || Input.GetButton("Fire2")) {
 			return Color.Blue;
-		} 
+		}
 		else{
 			return Color.Default;
 		}
 	}
 	void OnTriggerEnter(Collider other) {
-		if(currentAvatarGameObject.tag == other.tag) {
+		if(state.ToString() == other.tag) {
 			transformingSource.PlayOneShot (scoreSound);
 			score += 1 * combo;
 			combo += 1;
@@ -255,11 +265,41 @@ public class Player : MonoBehaviour{
 				yellowAbsorb.Emit(20);
 			}
 			Destroy(other.gameObject);
-		} 
+		}
 		else {
 			health -= 1;
 			Destroy(other.gameObject);
 			combo = 1;
+			if (health < 1) {
+				GameOver ();
+			}
 		}
+	}
+
+	void UpdateBoundaries(){
+		zBoundary = 0;
+		xBoundary = 0;
+
+		if (stageSize.z / 2.0 < transform.position.z) {
+			zBoundary = 1;
+		}
+		if (stageSize.z / -2.0 > transform.position.z) {
+			zBoundary = -1;
+		}
+		if (stageSize.x / 2.0 < transform.position.x) {
+			xBoundary = 1;
+		}
+		if (stageSize.x / -2.0 > transform.position.x) {
+			xBoundary = -1;
+		}
+	}
+
+	void GameOver(){
+		dead = true;
+		gameOverScreen.SetActive (true);
+		newVelocity = new Vector3(0,0,0);
+		inputVec = new Vector3(0,0,0);
+		newVelocity.y = GetComponent<Rigidbody>().velocity.y;
+		GetComponent<Rigidbody>().velocity = newVelocity;
 	}
 }

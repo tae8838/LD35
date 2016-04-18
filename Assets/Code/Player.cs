@@ -44,12 +44,15 @@ public class Player : MonoBehaviour{
 	ParticleSystem redAbsorb;
 	ParticleSystem yellowAbsorb;
 	ParticleSystem spark;
+	ParticleSystem stars;
 	public int health;
 	private AudioSource runningSource;
 	private AudioSource transformingSource;
 	public int combo = 1;
 	public GameObject gameOverScreen;
 	Vector3 stageSize;
+	public bool addHealth = true;
+	public bool decreaseHealth = false;
 
 	void Start(){
 		health = 3;
@@ -65,6 +68,7 @@ public class Player : MonoBehaviour{
 		greenAbsorb = this.transform.Find ("Absorb-Green").GetComponent<ParticleSystem> ();
 		yellowAbsorb = this.transform.Find ("Absorb-Yellow").GetComponent<ParticleSystem> ();
 		spark = this.transform.Find ("Spark").GetComponent<ParticleSystem> ();
+		stars = this.transform.Find ("Stars").GetComponent<ParticleSystem> ();
 		runningSource = currentAvatarGameObject.GetComponent<AudioSource>();
 		transformingSource = GetComponent<AudioSource>();
 		stageSize = stage.GetComponent<BoxCollider> ().bounds.size;
@@ -226,8 +230,13 @@ public class Player : MonoBehaviour{
 		print (other);
 		if(state.ToString() == other.tag) {
 			transformingSource.PlayOneShot (scoreSound);
+			if (health < 4) {
+				health += 1;
+				addHealth = true;
+			}
 			score += 1 * combo;
 			combo += 1;
+			stars.Emit (20);
 			Vector3 effectOffset = new Vector3(0, 1, 0);
 			if (state == Color.Red){
 				redAbsorb.transform.position = other.gameObject.transform.position + effectOffset;
@@ -251,6 +260,7 @@ public class Player : MonoBehaviour{
 			if (other.tag == "Collide"){
 			} else{
 				health -= 1;
+				decreaseHealth = true;
 				Destroy(other.gameObject);
 				combo = 1;
 				if (health < 1){

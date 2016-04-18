@@ -24,6 +24,17 @@ ModelImporter:
     100036: B_L_UpperArm
     100038: B_Head
     100040: B_Spine1
+    100042: B-Head
+    100044: B-L-FootFront
+    100046: B-L-FootFrontToe
+    100048: B-L-FootRear
+    100050: B-L-FootRearToe
+    100052: B-R-FootFront
+    100054: B-R-FootFrontToe
+    100056: B-R-FootRear
+    100058: B-R-FootRearToe
+    100060: B-Root
+    100062: Green
     400000: B_R_Toe2
     400002: DragonOwl
     400004: //RootNode
@@ -45,15 +56,28 @@ ModelImporter:
     400036: B_L_UpperArm
     400038: B_Head
     400040: B_Spine1
+    400042: B-Head
+    400044: B-L-FootFront
+    400046: B-L-FootFrontToe
+    400048: B-L-FootRear
+    400050: B-L-FootRearToe
+    400052: B-R-FootFront
+    400054: B-R-FootFrontToe
+    400056: B-R-FootRear
+    400058: B-R-FootRearToe
+    400060: B-Root
+    400062: Green
     2300000: //RootNode
     3300000: //RootNode
     4300000: Dragon
     4300002: Dragon001
     4300004: DragonOwl
     4300006: Turtle
+    4300008: Green
     9500000: //RootNode
     11100000: //RootNode
     13700000: DragonOwl
+    13700002: Green
   materials:
     importMaterials: 0
     materialName: 0

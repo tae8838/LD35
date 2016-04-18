@@ -204,6 +204,7 @@ public class Player : MonoBehaviour{
 			break;
 		}
 		currentAvatarGameObject.SetActive (true);
+		runningSource = currentAvatarGameObject.GetComponent<AudioSource>();
 		animator = currentAvatarGameObject.GetComponent<Animator> ();
 	}
 

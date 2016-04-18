@@ -37,6 +37,6 @@ public class Game : MonoBehaviour {
 		Enemy e = (Enemy)Instantiate(enemySpawn[enemyIndex], spawningAreas[spawnAreaIndex].transform.position, new Quaternion(0,0,0,0));
 		e.target = player.transform;
 		e.player = player;
-		e.stageSize = stage.GetComponent<BoxCollider> ().bounds.size;
+//		e.stageSize = stage.GetComponent<BoxCollider> ().bounds.size;
 	}
 }

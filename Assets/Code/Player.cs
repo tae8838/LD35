@@ -266,11 +266,14 @@ public class Player : MonoBehaviour{
 			Destroy(other.gameObject);
 		}
 		else {
-			health -= 1;
-			Destroy(other.gameObject);
-			combo = 1;
-			if (health < 1) {
-				GameOver ();
+			if (other.tag == "Collide"){
+			} else{
+				health -= 1;
+				Destroy(other.gameObject);
+				combo = 1;
+				if (health < 1){
+					GameOver();
+				}
 			}
 		}
 	}

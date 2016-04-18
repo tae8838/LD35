@@ -30,6 +30,13 @@ ModelImporter:
     100044: Ninja
     100046: Ninja_Headband
     100048: PositionLocator
+    100050: B_Body1
+    100052: B_Body2
+    100054: B_Root
+    100056: B_Tail0
+    100058: B_Tail1
+    100060: B_Tail2
+    100062: Blue
     400000: B_Head
     400002: B_L_Calf
     400004: B_L_Eye
@@ -55,11 +62,21 @@ ModelImporter:
     400044: Ninja
     400046: Ninja_Headband
     400048: PositionLocator
+    400050: B_Body1
+    400052: B_Body2
+    400054: B_Root
+    400056: B_Tail0
+    400058: B_Tail1
+    400060: B_Tail2
+    400062: Blue
     4300000: Ninja
     4300002: Ninja_Headband
+    4300004: Blue
+    7400000: Take 001
     9500000: //RootNode
     13700000: Ninja
     13700002: Ninja_Headband
+    13700004: Blue
   materials:
     importMaterials: 0
     materialName: 0

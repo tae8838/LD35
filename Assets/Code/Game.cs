@@ -8,12 +8,12 @@ public class Game : MonoBehaviour {
 	private float timeToNextEnemy;
 	public Player player;
 	public GameObject stage;
+	public GameObject[] spawningAreas;
 
 	// Use this for initialization
 	void Start () {
 		//calculate enemy spawn interval
 		enemySpawnInterval = 2f;
-
 	}
 	
 	// Update is called once per frame
@@ -32,8 +32,9 @@ public class Game : MonoBehaviour {
 
 	void SpawnEnemy()
 	{
-		int index = Random.Range (0, enemySpawn.Length);
-		Enemy e = (Enemy)Instantiate(enemySpawn[index], new Vector3(0,0,0), new Quaternion(0,0,0,0));
+		int enemyIndex = Random.Range (0, enemySpawn.Length);
+		int spawnAreaIndex = Random.Range (0, spawningAreas.Length);
+		Enemy e = (Enemy)Instantiate(enemySpawn[enemyIndex], spawningAreas[spawnAreaIndex].transform.position, new Quaternion(0,0,0,0));
 		e.target = player.transform;
 		e.player = player;
 		e.stageSize = stage.GetComponent<BoxCollider> ().bounds.size;

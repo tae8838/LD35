@@ -156,7 +156,6 @@ public class Player : MonoBehaviour{
 			if (xBoundary == -1 && newVelocity.x < 0) {
 				newVelocity.x = 0;
 			}
-
 		}
 		//no input, character not moving
 		else{

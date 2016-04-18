@@ -84,7 +84,6 @@ public class Enemy : Destroyable
 		enemyTransform = this.transform;
 		motion = new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
 		runSpeed = Random.Range (2f, 7f);
-		//Set a random knock resist
 	}
 	
 	protected override void Update()
@@ -94,108 +93,12 @@ public class Enemy : Destroyable
 		changeDirectionIn -= Time.deltaTime;
 	}
 
-	//move toward destination
-//	public Vector3 Navigation(Vector3 navDestination)
-//	{
-//		//GetComponent<NavMeshAgent>().destination = target.position;
-//		//Debug.Log("In Navigation");
-//		//nav target set to Navigation vector
-//		destination = navDestination;
-//		return destination;
-//	}
-//
 	public virtual void FixedUpdate()
 	{
-		
-
-		//Update animator with movement values
 		enemyPos = this.transform.position;
-		destination = target.position;
 
 	}
-//
-//	void BloodLoss()
-//	{
-//		float bleedamount = 30f;
-//		bleedamount -= Time.deltaTime * .95f;
-//		bloodfx.emissionRate -= Time.deltaTime * bleedamount;
-//	}
-//	
-//	void OnCollisionEnter(Collision collision) 
-//	{
-//		//Debug.Log("Enemy collided with something");
-//	}
-//
-//	void OnCollisionExit(Collision collision) 
-//	{
-//		if((collision.transform.tag == "Player" ))
-//		{
-//
-//		}
-//	}
-//	
-//	protected override bool ApplyDamage(int damage) 
-//	{ 
-//		bool damaged = base.ApplyDamage(damage);
-//		knockback = damage * Ball.knockPower;
-//
-//		if (damage > minDamageToDropCoins)
-//		{
-//			if (health > 0)
-//			{
-//				dropCoins(coinDropRate);
-//				enemyState = EnemyState.KnockedBack;
-//			}
-//			else
-//			{
-//				dropCoins(1f);
-//			}
-//		}
-//		return damaged;
-//	}
-//	
-//	protected void dropCoins(float dropRate)
-//	{
-//		if (Random.value < dropRate)
-//		{
-//			for (int i = 0; i < Random.Range(minCoinsToDrop, maxCoinsToDrop+1); ++i)
-//			{
-//				GameObject coin = Instantiate(coinPrefab, transform.position, transform.rotation) as GameObject;
-//				coin.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-3,3),Random.Range(10,14),Random.Range(-3,3));
-//			}
-//		}
-//	}
-//		
-//		protected override void Die()
-//	{
-//		base.Die ();
-//	}
-//
-//	public IEnumerator COAttacking()
-//	{
-//		while(bAttacking)
-//		{
-//			//Debug.Log("In COAttack");
-//			animator.SetTrigger("Attack1");
-//			yield return new WaitForSeconds(timeForAttack);
-//			DoDamage();
-//			yield return new WaitForSeconds(timeBetweenAttacks);
-//		}
-//	}
-//	
-//	public void DoDamage()
-//	{
-//		Player p = (Player)playerTransform.GetComponent("Player");
-//		BallBashersGame.Game.TakeDamage(1);
-////		p.ApplyDamage(damage);
-//		Vector3 direction = (target.position - transform.position).normalized;
-////		p.knockback = knockPower * damage;
-////		p.knockDirection = direction;
-////		p.KnockBack(knockback);
-//	}
-//
 
-//
 	void UpdateMovement() {
 		UpdateBoundaries ();
 		motion = GetMotion ();
@@ -218,7 +121,8 @@ public class Enemy : Destroyable
 	}
 	Vector3 GetMotion(){
 		Vector3 output;
-		if ((target.position - transform.position).magnitude < 3) {
+
+		if ((player.transform.position - transform.position).magnitude < 3) {
 			
 			if (player.state.ToString () == tag) {
 				runSpeed = 2;

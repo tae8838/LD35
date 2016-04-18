@@ -30,6 +30,25 @@ ModelImporter:
     100044: DragonOwl
     100046: PositionLocator
     100048: //RootNode
+    100050: Bip01 Head
+    100052: Bip01 L Calf
+    100054: Bip01 L Foot
+    100056: Bip01 L Thigh
+    100058: Bip01 L Toe0
+    100060: Bip01 L Toe1
+    100062: Bip01 Neck
+    100064: Bip01 R Calf
+    100066: Bip01 R Foot
+    100068: Bip01 R Thigh
+    100070: Bip01 R Toe0
+    100072: Bip01 R Toe1
+    100074: Bip01 Spine
+    100076: Biped_WingL1
+    100078: Biped_WingL2
+    100080: Biped_WingL3
+    100082: Biped_WingR1
+    100084: Biped_WingR2
+    100086: Biped_WingR3
     400000: B_Head
     400002: B_L_Calf
     400004: B_L_Forearm
@@ -55,6 +74,25 @@ ModelImporter:
     400044: DragonOwl
     400046: PositionLocator
     400048: //RootNode
+    400050: Bip01 Head
+    400052: Bip01 L Calf
+    400054: Bip01 L Foot
+    400056: Bip01 L Thigh
+    400058: Bip01 L Toe0
+    400060: Bip01 L Toe1
+    400062: Bip01 Neck
+    400064: Bip01 R Calf
+    400066: Bip01 R Foot
+    400068: Bip01 R Thigh
+    400070: Bip01 R Toe0
+    400072: Bip01 R Toe1
+    400074: Bip01 Spine
+    400076: Biped_WingL1
+    400078: Biped_WingL2
+    400080: Biped_WingL3
+    400082: Biped_WingR1
+    400084: Biped_WingR2
+    400086: Biped_WingR3
     4300000: DragonOwl
     7400000: Run
     9500000: //RootNode

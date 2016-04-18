@@ -108,6 +108,7 @@ ModelImporter:
     9500000: //RootNode
     11100000: //RootNode
     13700000: Panda
+    13700002: Yellow
   materials:
     importMaterials: 0
     materialName: 0

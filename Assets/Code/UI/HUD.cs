@@ -24,6 +24,9 @@ public class HUD : MonoBehaviour {
 		if (player.decreaseHealth) {
 			SubtractHealth ();
 		}
+		if (player.dead) {
+			gameObject.SetActive (false);
+		}
 	}
 	//find out how many hearts are needed from difficulty level, create that many hearts
 	void SetupNumberOfHearts(){
@@ -37,8 +40,10 @@ public class HUD : MonoBehaviour {
 
 	//change a heart to an empty heart image
 	void SubtractHealth(){
-		hearts[player.health].GetComponent<Image> ().sprite = heartEmptySprite;
-		player.decreaseHealth = false;
+		if (!player.dead) {
+			hearts [player.health].GetComponent<Image> ().sprite = heartEmptySprite;
+			player.decreaseHealth = false;
+		}
 	}
 
 	void UpdateScore(){

@@ -16,7 +16,7 @@ public class Player : MonoBehaviour{
 	public GameObject target;
 	float rotationSpeed = 15f;
 	public float gravity = -9.83f;
-	public float runSpeed = 8f;
+	public float runSpeed = 0f;
 	bool canMove = true;
 	public GameObject currentAvatarGameObject;
 	public AudioClip runSound;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour{
 	Vector3 inputVec;
 	Vector3 targetDirection;
 	Vector3 targetDashDirection;
-	bool dead = false;
+	public bool dead = false;
 	public Color state = Color.Default;
 	ParticleSystem whitePuff;
 	ParticleSystem bluePuff;
@@ -78,8 +78,8 @@ public class Player : MonoBehaviour{
 	}
 
 	void LateUpdate(){
-		float velocityXel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).x;
-		float velocityZel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z;
+		float velocityXel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).x * runSpeed;
+		float velocityZel = transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z * runSpeed;
 	}
 
 	void Update(){
@@ -101,8 +101,8 @@ public class Player : MonoBehaviour{
 			//Right vector relative to the camera Always orthogonal to the forward vector
 			Vector3 right = new Vector3(forward.z, 0, forward.x);
 			//directional inputs
-			float v = Input.GetAxis("Vertical");
-			float h = Input.GetAxis("Horizontal");
+			float v = Input.GetAxis("Vertical") * runSpeed;
+			float h = Input.GetAxis("Horizontal") * runSpeed;
 			//float dv = Input.GetAxisRaw("DashVertical");
 			//float dh = Input.GetAxisRaw("DashHorizontal");
 			// Target direction relative to the camera
@@ -136,22 +136,20 @@ public class Player : MonoBehaviour{
 		}
 	}
 
-	float UpdateMovement(){
+	void UpdateMovement(){
 		Vector3 motion = inputVec;
-		RotateTowardMovementDirection ();
 		if(!dead){
-			newVelocity = motion * runSpeed;
+			newVelocity = motion;
 		}
 		//no input, character not moving
 		else{
 			newVelocity = new Vector3(0,0,0);
 			inputVec = new Vector3(0,0,0);
 		}
+		RotateTowardMovementDirection ();
 		// limit velocity to x and z, by maintaining current y velocity:
-		newVelocity.y = GetComponent<Rigidbody>().velocity.y;
-		GetComponent<Rigidbody>().velocity = newVelocity;
+		GetComponent<Rigidbody>().velocity = inputVec * 1.5f;
 		//return a movement value for the animator
-		return inputVec.magnitude;
 	}
 
 	//face character along input direction
@@ -227,7 +225,6 @@ public class Player : MonoBehaviour{
 		}
 	}
 	void OnTriggerEnter(Collider other) {
-		print (other);
 		if(state.ToString() == other.tag) {
 			transformingSource.PlayOneShot (scoreSound);
 			if (health < 4) {

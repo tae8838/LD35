@@ -114,8 +114,10 @@ public class Enemy : Destroyable
 	}
 
 	void RotateTowardMovementDirection(){
-		var targetRotation = Quaternion.LookRotation(motion, Vector3.up);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10.0f);
+		if (motion.magnitude != 0) {
+			var targetRotation = Quaternion.LookRotation (motion, Vector3.up);
+			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.deltaTime * 10.0f);
+		}
 	}
 	Vector3 GetMotion(){
 		Vector3 output;

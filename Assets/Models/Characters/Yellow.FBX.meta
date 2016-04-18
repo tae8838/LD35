@@ -15,6 +15,43 @@ ModelImporter:
     100018: B_L_Thigh
     100020: B_Pelvis
     100022: PositionLocator
+    100024: B_L_Ear0
+    100026: B_L_Ear1
+    100028: B_L_Foot
+    100030: B_L_Toe
+    100032: B_R_Ear0
+    100034: B_R_Ear1
+    100036: B_R_Foot
+    100038: B_R_Toe
+    100040: B_Tail0
+    100042: B_Tail1
+    100044: B_Tail2
+    100046: Bip01
+    100048: Bip01 Head
+    100050: Bip01 L Calf
+    100052: Bip01 L Ear0
+    100054: Bip01 L Ear1
+    100056: Bip01 L Foot
+    100058: Bip01 L Thigh
+    100060: Bip01 L Toe0
+    100062: Bip01 L Toe01
+    100064: Bip01 Neck
+    100066: Bip01 Pelvis
+    100068: Bip01 R Calf
+    100070: Bip01 R Ear0
+    100072: Bip01 R Ear1
+    100074: Bip01 R Foot
+    100076: Bip01 R Thigh
+    100078: Bip01 R Toe0
+    100080: Bip01 R Toe01
+    100082: Bip01 Spine
+    100084: Bip01 Tail
+    100086: Bip01 Tail1
+    100088: Bip01 Tail2
+    100090: Bip01 TailNub
+    100092: Bip01 Xtra01Nub
+    100094: Bip01 Xtra01OppNub
+    100096: Yellow
     400000: Panda
     400002: //RootNode
     400004: B_R_UpperArm
@@ -27,7 +64,47 @@ ModelImporter:
     400018: B_L_Thigh
     400020: B_Pelvis
     400022: PositionLocator
+    400024: B_L_Ear0
+    400026: B_L_Ear1
+    400028: B_L_Foot
+    400030: B_L_Toe
+    400032: B_R_Ear0
+    400034: B_R_Ear1
+    400036: B_R_Foot
+    400038: B_R_Toe
+    400040: B_Tail0
+    400042: B_Tail1
+    400044: B_Tail2
+    400046: Bip01
+    400048: Bip01 Head
+    400050: Bip01 L Calf
+    400052: Bip01 L Ear0
+    400054: Bip01 L Ear1
+    400056: Bip01 L Foot
+    400058: Bip01 L Thigh
+    400060: Bip01 L Toe0
+    400062: Bip01 L Toe01
+    400064: Bip01 Neck
+    400066: Bip01 Pelvis
+    400068: Bip01 R Calf
+    400070: Bip01 R Ear0
+    400072: Bip01 R Ear1
+    400074: Bip01 R Foot
+    400076: Bip01 R Thigh
+    400078: Bip01 R Toe0
+    400080: Bip01 R Toe01
+    400082: Bip01 Spine
+    400084: Bip01 Tail
+    400086: Bip01 Tail1
+    400088: Bip01 Tail2
+    400090: Bip01 TailNub
+    400092: Bip01 Xtra01Nub
+    400094: Bip01 Xtra01OppNub
+    400096: Yellow
+    2300000: Yellow
+    3300000: Yellow
     4300000: Panda
+    4300002: Yellow
     9500000: //RootNode
     11100000: //RootNode
     13700000: Panda

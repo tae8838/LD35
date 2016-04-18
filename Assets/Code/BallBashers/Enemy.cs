@@ -26,8 +26,6 @@ public class Enemy : Destroyable
 	
 	public GameObject coinPrefab;
 	public float minDamageToDropCoins = 20f;
-	public int minCoinsToDrop = 1;
-	public int maxCoinsToDrop = 2;
 	public float coinDropRate = 0.5f;
 	
 	public bool isAlive = true;
@@ -39,9 +37,6 @@ public class Enemy : Destroyable
 	[HideInInspector]
 	public Vector3 knockDirection;
 
-	public float timeForAttack = 0.3f;
-	public float timeBetweenAttacks = 1f;
-
 	private float knockRegression = 120f;
 
 	private Transform myTransform;
@@ -51,7 +46,7 @@ public class Enemy : Destroyable
 	public ParticleSystem bloodfx;
 	private float runSpeed;
 	private float rotationSpeed = 1000f;
-	private float changeDirectionIn = 1f;
+	private float changeDirectionIn = 1.5f;
 	Vector3 motion;
 	public Vector3 stageSize;
 	
@@ -80,7 +75,8 @@ public class Enemy : Destroyable
 	public override void Start ()
 	{
 		enemyTransform = this.transform;
-		motion = new Vector3 (Random.Range (-1, 2), 0, Random.Range (-1, 2));
+		motion = new Vector3 (0,0,0);
+		changeDirectionIn = 1.5f;
 		runSpeed = Random.Range (2f, 7f);
 	}
 	
